@@ -1,0 +1,490 @@
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap');
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  :root{
+    --navy:#0D1B2A;
+    --ink:#111827;
+    --teal:#00C896;
+    --teal-dim:#00A87E;
+    --teal-dark:#004D3A;
+    --amber:#F59E0B;
+    --red:#EF4444;
+    --slate:#1E293B;
+    --mist:#F0F4F8;
+    --border:#E2E8F0;
+    --text-secondary:#64748B;
+  }
+
+  body{font-family:'DM Sans',sans-serif;background:#fff;color:var(--ink);overflow-x:hidden;}
+
+  /* ── NAV ── */
+  nav{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:20px 48px;border-bottom:1px solid var(--border);
+    background:#fff;
+  }
+  .nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:17px;letter-spacing:-.02em;color:var(--navy);}
+  .nav-logo span{color:var(--teal);}
+  .nav-pill{
+    background:var(--navy);color:#fff;font-size:12px;font-weight:500;
+    padding:8px 18px;border-radius:100px;letter-spacing:.02em;cursor:pointer;
+    font-family:'DM Sans',sans-serif;border:none;
+    transition:background .2s;
+  }
+  .nav-pill:hover{background:var(--teal-dark);}
+
+  /* ── HERO ── */
+  .hero{
+    padding:80px 48px 64px;
+    max-width:1100px;margin:0 auto;
+    display:grid;grid-template-columns:1fr 420px;gap:64px;align-items:center;
+  }
+  .hero-eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    background:#FEF3C7;color:#92400E;
+    font-size:12px;font-weight:500;padding:5px 12px;border-radius:100px;
+    margin-bottom:24px;
+  }
+  .hero-eyebrow-dot{width:6px;height:6px;background:#F59E0B;border-radius:50%;}
+  h1{
+    font-family:'Syne',sans-serif;font-weight:800;font-size:52px;
+    line-height:1.05;letter-spacing:-.03em;color:var(--navy);margin-bottom:24px;
+  }
+  h1 .accent{color:var(--teal);}
+  h1 .strike{
+    position:relative;display:inline-block;
+  }
+  h1 .strike::after{
+    content:'';position:absolute;left:0;top:52%;width:100%;height:3px;
+    background:var(--red);transform:rotate(-2deg);
+  }
+  .hero-sub{
+    font-size:17px;color:var(--text-secondary);line-height:1.7;
+    margin-bottom:36px;max-width:520px;font-weight:300;
+  }
+  .hero-sub strong{color:var(--ink);font-weight:500;}
+  .hero-cta-row{display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
+  .btn-primary{
+    background:var(--navy);color:#fff;font-family:'DM Sans',sans-serif;
+    font-size:15px;font-weight:500;padding:14px 28px;border-radius:10px;
+    border:none;cursor:pointer;transition:all .2s;
+  }
+  .btn-primary:hover{background:var(--teal-dark);transform:translateY(-1px);}
+  .btn-ghost{
+    background:transparent;color:var(--text-secondary);font-family:'DM Sans',sans-serif;
+    font-size:14px;font-weight:400;padding:14px 0;border:none;cursor:pointer;
+    text-decoration:underline;text-underline-offset:3px;
+  }
+
+  /* Hero stat card */
+  .hero-card{
+    background:var(--navy);border-radius:20px;padding:32px;
+    color:#fff;position:relative;overflow:hidden;
+  }
+  .hero-card::before{
+    content:'';position:absolute;top:-60px;right:-60px;
+    width:200px;height:200px;border-radius:50%;
+    background:var(--teal);opacity:.08;
+  }
+  .hero-card-label{
+    font-size:11px;font-weight:500;letter-spacing:.08em;color:#94A3B8;
+    text-transform:uppercase;margin-bottom:20px;
+  }
+  .stat-row{display:flex;flex-direction:column;gap:16px;}
+  .stat-item{display:flex;align-items:flex-start;gap:14px;}
+  .stat-num{
+    font-family:'Syne',sans-serif;font-weight:700;font-size:28px;
+    color:var(--teal);line-height:1;min-width:64px;
+  }
+  .stat-desc{font-size:13px;color:#94A3B8;line-height:1.5;padding-top:2px;}
+  .stat-desc strong{color:#fff;font-weight:500;}
+  .hero-card-divider{height:1px;background:rgba(255,255,255,.08);margin:20px 0;}
+
+  /* ── COPILOT PROBLEM ── */
+  .section{padding:64px 48px;max-width:1100px;margin:0 auto;}
+  .section-label{
+    font-size:11px;font-weight:600;letter-spacing:.1em;color:var(--teal-dim);
+    text-transform:uppercase;margin-bottom:12px;
+  }
+  .section-title{
+    font-family:'Syne',sans-serif;font-weight:700;font-size:36px;
+    line-height:1.15;letter-spacing:-.025em;color:var(--navy);margin-bottom:16px;
+  }
+  .section-sub{font-size:16px;color:var(--text-secondary);line-height:1.7;max-width:680px;font-weight:300;}
+
+  .copilot-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px;
+  }
+  .problem-card{
+    border:1px solid var(--border);border-radius:14px;padding:24px;
+    transition:border-color .2s,transform .2s;
+  }
+  .problem-card:hover{border-color:var(--red);transform:translateY(-2px);}
+  .problem-card-icon{
+    width:36px;height:36px;border-radius:8px;margin-bottom:16px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .icon-red{background:#FEE2E2;}
+  .icon-amber{background:#FEF3C7;}
+  .icon-purple{background:#EDE9FE;}
+  .problem-card h3{
+    font-family:'Syne',sans-serif;font-weight:600;font-size:15px;
+    color:var(--navy);margin-bottom:8px;
+  }
+  .problem-card p{font-size:13px;color:var(--text-secondary);line-height:1.6;}
+  .problem-stat{
+    font-family:'Syne',sans-serif;font-weight:700;font-size:22px;
+    margin-top:14px;
+  }
+  .red{color:var(--red);}
+  .amber{color:var(--amber);}
+  .purple{color:#7C3AED;}
+
+  /* ── DIVIDER ── */
+  .full-divider{height:1px;background:var(--border);margin:0 48px;}
+
+  /* ── HOW IT WORKS ── */
+  .how-grid{
+    display:grid;grid-template-columns:1fr 1fr;gap:48px;
+    margin-top:40px;align-items:start;
+  }
+  .signal-stack{display:flex;flex-direction:column;gap:12px;}
+  .signal-card{
+    border-radius:12px;padding:18px 20px;
+    display:flex;align-items:flex-start;gap:14px;
+    border:1px solid var(--border);
+  }
+  .signal-dot{
+    width:10px;height:10px;border-radius:50%;flex-shrink:0;margin-top:4px;
+  }
+  .signal-name{font-weight:500;font-size:14px;color:var(--navy);margin-bottom:3px;}
+  .signal-desc{font-size:12px;color:var(--text-secondary);line-height:1.5;}
+  .signal-alone{
+    font-size:11px;font-weight:500;padding:3px 8px;border-radius:6px;
+    margin-top:6px;display:inline-block;
+  }
+
+  .fusion-result{
+    background:var(--navy);border-radius:16px;padding:28px;color:#fff;
+    position:sticky;top:24px;
+  }
+  .fusion-label{
+    font-size:10px;font-weight:600;letter-spacing:.1em;color:var(--teal);
+    text-transform:uppercase;margin-bottom:12px;
+  }
+  .fusion-title{
+    font-family:'Syne',sans-serif;font-weight:700;font-size:18px;
+    color:#fff;margin-bottom:16px;line-height:1.3;
+  }
+  .fusion-output{
+    background:rgba(0,200,150,.08);border:1px solid rgba(0,200,150,.2);
+    border-radius:10px;padding:16px;font-size:13px;color:#94A3B8;line-height:1.6;
+  }
+  .fusion-output strong{color:var(--teal);font-weight:500;}
+  .failure-tag{
+    display:inline-flex;align-items:center;gap:6px;
+    background:rgba(239,68,68,.15);color:#FCA5A5;
+    font-size:11px;font-weight:500;padding:4px 10px;border-radius:6px;
+    margin-bottom:12px;
+  }
+  .failure-tag-dot{width:5px;height:5px;background:#EF4444;border-radius:50%;}
+
+  /* ── FAILURE MODES ── */
+  .failure-grid{
+    display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:36px;
+  }
+  .failure-card{
+    border-radius:12px;padding:20px;display:flex;gap:14px;
+    border:1px solid var(--border);align-items:flex-start;
+  }
+  .failure-num{
+    font-family:'Syne',sans-serif;font-weight:700;font-size:20px;
+    min-width:32px;
+  }
+  .failure-name{font-weight:500;font-size:14px;color:var(--navy);margin-bottom:4px;}
+  .failure-desc{font-size:12px;color:var(--text-secondary);line-height:1.5;}
+
+  /* ── NAME OPTIONS ── */
+  .names-section{
+    background:var(--mist);padding:64px 48px;
+  }
+  .names-inner{max-width:1100px;margin:0 auto;}
+  .names-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:36px;
+  }
+  .name-card{
+    background:#fff;border-radius:16px;padding:24px;border:1px solid var(--border);
+    cursor:pointer;transition:all .2s;position:relative;
+  }
+  .name-card:hover{border-color:var(--teal);transform:translateY(-2px);}
+  .name-card.featured{border:2px solid var(--teal);}
+  .name-badge{
+    position:absolute;top:-10px;left:20px;
+    background:var(--teal);color:#fff;font-size:10px;font-weight:600;
+    padding:3px 10px;border-radius:100px;letter-spacing:.05em;
+  }
+  .name-main{
+    font-family:'Syne',sans-serif;font-weight:700;font-size:22px;
+    color:var(--navy);margin-bottom:4px;letter-spacing:-.02em;
+  }
+  .name-tagline{
+    font-size:12px;color:var(--teal-dim);font-weight:500;margin-bottom:12px;
+  }
+  .name-why{font-size:13px;color:var(--text-secondary);line-height:1.6;}
+  .name-vibe{
+    display:inline-block;font-size:11px;font-weight:500;
+    padding:3px 9px;border-radius:6px;margin-top:12px;
+    background:#F1F5F9;color:#64748B;
+  }
+
+  /* ── CTA STRIP ── */
+  .cta-strip{
+    background:var(--navy);padding:64px 48px;text-align:center;
+  }
+  .cta-strip h2{
+    font-family:'Syne',sans-serif;font-weight:700;font-size:36px;
+    color:#fff;margin-bottom:12px;letter-spacing:-.02em;
+  }
+  .cta-strip p{
+    font-size:16px;color:#94A3B8;margin-bottom:32px;font-weight:300;
+  }
+  .cta-strip .btn-primary{
+    background:var(--teal);color:var(--navy);font-weight:600;
+    font-size:15px;padding:16px 36px;
+  }
+  .cta-strip .btn-primary:hover{background:#00E0A8;}
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+  .fade-up{animation:fadeUp .6s ease both;}
+  .fade-up-1{animation-delay:.1s;}
+  .fade-up-2{animation-delay:.2s;}
+  .fade-up-3{animation-delay:.3s;}
+  .fade-up-4{animation-delay:.4s;}
+
+  /* Responsive */
+  @media(max-width:800px){
+    .hero{grid-template-columns:1fr;gap:32px;padding:40px 24px;}
+    h1{font-size:36px;}
+    .copilot-grid,.how-grid,.failure-grid,.names-grid{grid-template-columns:1fr;}
+    .section,.names-section,.cta-strip{padding:48px 24px;}
+    nav{padding:16px 24px;}
+    .full-divider{margin:0 24px;}
+  }
+</style>
+
+<nav>
+  <div class="nav-logo">signal<span>.</span>dx</div>
+  <button class="nav-pill" onclick="sendPrompt('Tell me more about how to build this landing page into a real product')">Request a demo ↗</button>
+</nav>
+
+<section style="max-width:1100px;margin:0 auto;padding:0 48px;">
+  <div class="hero" style="padding-left:0;padding-right:0;">
+    <div class="fade-up">
+      <div class="hero-eyebrow">
+        <div class="hero-eyebrow-dot"></div>
+        The Microsoft Copilot Conundrum
+      </div>
+      <h1>Your AI is<br><span class="strike">working</span><br><span class="accent">not working.</span></h1>
+      <p class="hero-sub">
+        You paid for Microsoft Copilot. Rolled it out company-wide. 
+        <strong>Adoption is at 14%.</strong> The CFO wants to know why. 
+        You don't have a defensible answer — yet.
+      </p>
+      <div class="hero-cta-row">
+        <button class="btn-primary" onclick="sendPrompt('How do we build a demo of the AI diagnostic tool for the hackathon?')">See the diagnostic ↗</button>
+        <button class="btn-ghost">Watch 2-min overview</button>
+      </div>
+    </div>
+    <div class="hero-card fade-up fade-up-2">
+      <div class="hero-card-label">The Copilot reality check</div>
+      <div class="stat-row">
+        <div class="stat-item">
+          <div class="stat-num">14%</div>
+          <div class="stat-desc"><strong>average Copilot adoption</strong> 6 months post-rollout across enterprise deployments</div>
+        </div>
+        <div class="hero-card-divider"></div>
+        <div class="stat-item">
+          <div class="stat-num">$30</div>
+          <div class="stat-desc"><strong>per user per month</strong> — a 1,000-seat license costs $360K/year whether used or not</div>
+        </div>
+        <div class="hero-card-divider"></div>
+        <div class="stat-item">
+          <div class="stat-num">6 mo</div>
+          <div class="stat-desc"><strong>before most orgs realize</strong> the rollout has quietly stalled — too late to course-correct easily</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="full-divider"></div>
+
+<section class="section fade-up fade-up-1">
+  <div class="section-label">The Copilot Conundrum</div>
+  <div class="section-title">Three reasons your Copilot<br>investment is underperforming</div>
+  <p class="section-sub">Every organization that has deployed Microsoft Copilot is experiencing at least one of these. Most are experiencing all three simultaneously — and can't tell which is driving the problem.</p>
+
+  <div class="copilot-grid">
+    <div class="problem-card">
+      <div class="problem-card-icon icon-red">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#EF4444" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+      </div>
+      <h3>Trust eroded early</h3>
+      <p>Users got a hallucinated output in week 2. They told their colleagues. Adoption never recovered. The tool works fine — but perception is now the constraint.</p>
+      <div class="problem-stat red">67%</div>
+      <p style="font-size:12px;color:var(--text-secondary);margin-top:4px;">of users who stop using an AI tool cite a single bad experience as the trigger</p>
+    </div>
+    <div class="problem-card">
+      <div class="problem-card-icon icon-amber">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      </div>
+      <h3>No workflow integration</h3>
+      <p>Copilot was deployed on top of existing processes, not woven into them. People have to remember to use it — so they don't. The process didn't change around the AI.</p>
+      <div class="problem-stat amber">78%</div>
+      <p style="font-size:12px;color:var(--text-secondary);margin-top:4px;">of failed AI rollouts had no corresponding process redesign</p>
+    </div>
+    <div class="problem-card">
+      <div class="problem-card-icon icon-purple">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+      </div>
+      <h3>Value is invisible</h3>
+      <p>Nobody measured baseline productivity before the rollout. There's no way to prove ROI — even when the tool is genuinely saving time. The CFO sees cost, not value.</p>
+      <div class="problem-stat purple">$0</div>
+      <p style="font-size:12px;color:var(--text-secondary);margin-top:4px;">measurable ROI documented in most Copilot deployments after 6 months</p>
+    </div>
+  </div>
+</section>
+
+<div class="full-divider"></div>
+
+<section class="section">
+  <div class="section-label">How it works</div>
+  <div class="section-title">Three signals. One diagnosis.<br>A clear path forward.</div>
+  <p class="section-sub">Most organizations look at these signals in isolation. That's why the root cause stays hidden. Our system fuses all three to surface what's actually breaking your Copilot adoption.</p>
+
+  <div class="how-grid">
+    <div class="signal-stack">
+      <div class="signal-card">
+        <div class="signal-dot" style="background:#00C896;"></div>
+        <div>
+          <div class="signal-name">Adoption telemetry</div>
+          <div class="signal-desc">Copilot usage logs, feature engagement, login frequency over time from Microsoft 365. Shows exactly where and when usage fell off.</div>
+          <span class="signal-alone" style="background:#E0FAF4;color:#0F6E56;">Alone → tells you <em>what</em> happened</span>
+        </div>
+      </div>
+      <div class="signal-card">
+        <div class="signal-dot" style="background:#534AB7;"></div>
+        <div>
+          <div class="signal-name">Meeting sentiment</div>
+          <div class="signal-desc">Transcript analysis from Teams meetings and standups. Surfaces frustration, workarounds, and the exact moment trust broke down.</div>
+          <span class="signal-alone" style="background:#EEEDFE;color:#534AB7;">Alone → tells you <em>how people felt</em></span>
+        </div>
+      </div>
+      <div class="signal-card">
+        <div class="signal-dot" style="background:#F59E0B;"></div>
+        <div>
+          <div class="signal-name">Rollout delivery data</div>
+          <div class="signal-desc">Project history, training completion, change management milestones, support ticket volume. Shows what happened to the initiative itself.</div>
+          <span class="signal-alone" style="background:#FAEEDA;color:#854F0B;">Alone → tells you <em>what was delivered</em></span>
+        </div>
+      </div>
+      <div style="text-align:center;padding:8px 0;color:var(--text-secondary);font-size:13px;font-weight:500;">
+        ↓ Fused together ↓
+      </div>
+    </div>
+
+    <div class="fusion-result">
+      <div class="fusion-label">Diagnostic output</div>
+      <div class="failure-tag"><div class="failure-tag-dot"></div>Failure mode detected</div>
+      <div class="fusion-title">Trust breakdown + change resistance</div>
+      <div class="fusion-output">
+        <strong>Root cause:</strong> Copilot produced incorrect meeting summaries in week 3 of rollout — flagged in 4 consecutive standups. No corrective communication was sent. Change management milestone "manager champion program" was never completed.<br><br>
+        <strong>Why adoption didn't recover:</strong> Users have a workaround (manual notes) that feels safer. No incentive to retry.<br><br>
+        <strong>Recommended actions:</strong><br>
+        1. Targeted re-engagement for the 3 teams with highest drop-off<br>
+        2. Publish corrected output accuracy data to rebuild trust<br>
+        3. Complete champion program — 6 weeks, 8 managers<br><br>
+        <strong>Projected recovery:</strong> +34% adoption in 90 days
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="full-divider"></div>
+
+<section class="section">
+  <div class="section-label">Failure mode library</div>
+  <div class="section-title">Six reasons AI initiatives fail.<br>We detect all of them.</div>
+  <div class="failure-grid">
+    <div class="failure-card"><div class="failure-num red">01</div><div><div class="failure-name">Low adoption</div><div class="failure-desc">Tool deployed, usage flatlines. Telemetry shows cliff — diagnostic finds the trigger event.</div></div></div>
+    <div class="failure-card"><div class="failure-num red">02</div><div><div class="failure-name">Data quality rot</div><div class="failure-desc">Outputs degrade as upstream data drifts. No alert fires. Users quietly stop trusting.</div></div></div>
+    <div class="failure-card"><div class="failure-num amber">03</div><div><div class="failure-name">Trust breakdown</div><div class="failure-desc">One bad output, shared widely. Perception locks in before the problem is even fixed.</div></div></div>
+    <div class="failure-card"><div class="failure-num amber">04</div><div><div class="failure-name">Scope creep stall</div><div class="failure-desc">Initiative expanded past original use case. Delivery collapses. Nobody owns the constraint.</div></div></div>
+    <div class="failure-card"><div class="failure-num purple">05</div><div><div class="failure-name">Change resistance</div><div class="failure-desc">Process never changed around the AI. People work around it. Adoption is structurally blocked.</div></div></div>
+    <div class="failure-card"><div class="failure-num purple">06</div><div><div class="failure-name">ROI invisibility</div><div class="failure-desc">Tool works — nobody measured it. Budget renewal at risk. Value is real but invisible.</div></div></div>
+  </div>
+</section>
+
+<section class="names-section">
+  <div class="names-inner">
+    <div class="section-label">Name options</div>
+    <div class="section-title">Six name directions for the product</div>
+    <p class="section-sub">Each name takes a different strategic angle — diagnostic authority, signal intelligence, or direct pain-point framing. Click any to explore.</p>
+
+    <div class="names-grid" style="margin-top:36px;">
+
+      <div class="name-card featured" onclick="sendPrompt('Tell me more about the SignalDx brand direction and how it would work as a product name')">
+        <div class="name-badge">TEAM FAVORITE</div>
+        <div class="name-main">SignalDx</div>
+        <div class="name-tagline">Signal + Diagnosis</div>
+        <div class="name-why">Medical shorthand (Dx = diagnosis) fused with signal intelligence. Feels clinical, authoritative, and precise — exactly what a CFO wants when asking why AI investments failed. Short, memorable, domain-available.</div>
+        <span class="name-vibe">Authoritative · Clinical · Memorable</span>
+      </div>
+
+      <div class="name-card" onclick="sendPrompt('Tell me more about the Vantage AI brand direction')">
+        <div class="name-main">Vantage</div>
+        <div class="name-tagline">See what others miss</div>
+        <div class="name-why">Evokes elevated perspective and strategic advantage. "Vantage AI" or "Vantage Diagnostics" — positions the product as the view from above that reveals what ground-level metrics can't. Strong enterprise feel.</div>
+        <span class="name-vibe">Strategic · Elevated · Enterprise</span>
+      </div>
+
+      <div class="name-card" onclick="sendPrompt('Tell me more about the Drift brand direction for AI diagnostic')">
+        <div class="name-main">Drift Report</div>
+        <div class="name-tagline">Where AI goes off course</div>
+        <div class="name-why">Technically precise — AI initiatives "drift" from their intended trajectory. Positions the product as the instrument that detects deviation early. Has a navigation / flight-instrument quality that feels trustworthy and data-driven.</div>
+        <span class="name-vibe">Technical · Precise · Trustworthy</span>
+      </div>
+
+      <div class="name-card" onclick="sendPrompt('Tell me more about the Coherence brand direction')">
+        <div class="name-main">Coherence</div>
+        <div class="name-tagline">When signals align, answers emerge</div>
+        <div class="name-why">Speaks directly to the fusion mechanic — making disparate signals coherent. Has a sophisticated, almost philosophical quality that would resonate with CDOs and transformation leads who think in systems. Distinctive and ownable.</div>
+        <span class="name-vibe">Sophisticated · Systems thinking · Ownable</span>
+      </div>
+
+      <div class="name-card" onclick="sendPrompt('Tell me more about the Traceback brand direction')">
+        <div class="name-main">Traceback</div>
+        <div class="name-tagline">Root cause, not symptoms</div>
+        <div class="name-why">Borrowed from software debugging — "traceback" is what you run when something fails and you need to find the exact line where it broke. Immediately understood by technical buyers. Signals depth and precision.</div>
+        <span class="name-vibe">Technical · Direct · Developer-adjacent</span>
+      </div>
+
+      <div class="name-card" onclick="sendPrompt('Tell me more about the ClearSignal brand direction')">
+        <div class="name-main">ClearSignal</div>
+        <div class="name-tagline">Cut through the noise</div>
+        <div class="name-why">Simple, direct, and immediately understood. Positions the product as the tool that separates signal from noise in AI performance data. Works across all buyer personas — technical and executive alike. Easy to say, easy to remember.</div>
+        <span class="name-vibe">Simple · Accessible · Cross-persona</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="cta-strip">
+  <h2>Stop guessing.<br>Start diagnosing.</h2>
+  <p>Run the diagnostic against your Copilot deployment in 2 weeks.<br>Walk into your next budget conversation with answers.</p>
+  <button class="btn-primary" onclick="sendPrompt('What does the 2-week AI diagnostic engagement look like in practice? What does the client get?')">Book a diagnostic session ↗</button>
+</section>
